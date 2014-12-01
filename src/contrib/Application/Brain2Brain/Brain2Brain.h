@@ -73,4 +73,3 @@ private:
 };
 
 #endif // BRAIN2BRAIN_H
-
