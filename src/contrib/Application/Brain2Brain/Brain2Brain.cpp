@@ -135,6 +135,10 @@ void Brain2Brain::OnTrialBegin() {
     targetCollisionDetected = false;
     state_lock->Release();
     State("TargetHitCode") = 0;
+<<<<<<< HEAD
+=======
+    
+>>>>>>> newEdit2
     // Increment the trial count
     trialCount++;
 
@@ -181,6 +185,7 @@ void Brain2Brain::OnFeedbackEnd() {
         //   so we artificially "hit" the closer target
         state_lock->Acquire();
         Brain2BrainUI::TargetHitType hitType = B2BGUI->GetClosestTarget();
+        AppLog << "Chose closest target" << std::endl;
         State("TargetHitCode") = static_cast<long>(targetHitType);
         targetHit = true;
         targetHitType = hitType;

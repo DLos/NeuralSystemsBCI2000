@@ -9,6 +9,7 @@
 
 // Color of targets when idle
 #define TARGET_FILL_COLOR RGBColor::Blue
+#define TARGET_FORCED_HIT_COLOR RGBColor::YELLOW
 
 Brain2BrainUI::Brain2BrainUI(GUI::DisplayWindow& display) 
     : window(display), dwellTime(0) {}
@@ -170,7 +171,11 @@ Brain2BrainUI::TargetHitType Brain2BrainUI::DoFeedback(const GenericSignal& Cont
     return NOTHING_HIT;
 }
 
+<<<<<<< HEAD
 void Brain2BrainUI::OnFeedbackEnd() {  
+=======
+void Brain2BrainUI::OnFeedbackEnd() {
+>>>>>>> newEdit2
     cursor->Hide();
 }
 
@@ -218,10 +223,11 @@ Brain2BrainUI::TargetHitType Brain2BrainUI::GetClosestTarget() {
     GUI::Rect cursorRect = cursor->ObjectRect();
     GUI::Rect yesRect = yesTarget->ObjectRect();
     GUI::Rect noRect = noTarget->ObjectRect();
-    
+
     float comparison = std::abs(cursorRect.left + cursorRect.right - yesRect.left - yesRect.right)
         - std::abs(cursorRect.left + cursorRect.right - noRect.left - noRect.right);
     
+<<<<<<< HEAD
     TargetHitType targetHitYes = comparison < 0 ? YES_TARGET : NO_TARGET;
     RGBColor hitColor = RGBColor::Yellow;
     if (targetHitYes == YES_TARGET) {
@@ -233,3 +239,17 @@ Brain2BrainUI::TargetHitType Brain2BrainUI::GetClosestTarget() {
     // Distance to the Yes target (is | is not) less than the distance to the No target
     return targetHitYes;
 }
+=======
+    // Distance to the Yes target (is | is not) less than the distance to the No target at the
+    // end of the trial
+    TargetHitType targetHit = comparison < 0 ? YES_TARGET : NO_TARGET;
+
+    // Changing the color of the target that the cursor was closest to at the end of the trial
+    if (targetHit == YES_TARGET) {
+        yesTarget->SetFillColor(TARGET_FORCED_HIT_COLOR);
+    } else {
+        noTarget->SetFillColor(TARGET_FORCED_HIT_COLOR);
+    }
+    return targetHit;
+}
+>>>>>>> newEdit2
